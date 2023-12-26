@@ -19,3 +19,15 @@ def _validate_input(player_input, guessed_letters):
         and player_input not in guessed_letters
     )
 
+def join_guessed_letters(guessed_letters):
+    return " ".join(sorted(guessed_letters))
+
+def build_guessed_word(target_word, guessed_letters):
+    current_letters = []
+    for letter in target_word:
+        if letter in guessed_letters:
+            current_letters.appened(letter)
+        else:
+            current_letters.append("_")
+    return " ".join(current_letters)
+
