@@ -128,3 +128,42 @@ def draw_hanged_man(wrong_guesses):
 
     print(hanged_man[wrong_guesses])
 
+MAX_INCORRECT_GUESSES = 6
+
+def game_over(wrong_guesses, target_word, guessed_letters):
+    if wrong_guesses == MAX_INCORRECT_GUESSES:
+        return True
+    if set(target_word) <= guessed_letters:
+        return True
+    return False
+
+def game_over(guesses_taken, target_word, letters_guessed):
+    return (
+        guesses_taken == MAX_INCORRECT_GUESSES
+        or set(target_word) <= letters_guessed
+    )
+
+if __name__ == "__main__":
+    #initalize
+    target_word = select_word()
+    guessed_letters = set()
+    guessed_word = build_guessed_word(target_word, guessed_letters)
+    wrong_guesses = 0
+    print("Hangman")
+    #loop
+    while not game_over(wrong_guesses, target_word, guessed_letters):
+        draw_hanged_man(wrong_guesses)
+        print(f'Your word is:{guessed_word}')
+        print(
+            "Curent guessed letters: "
+            f"{join_guessed_letters(guessed_letters)}\n"
+        )
+
+        player_guess = get_player_input(guessed_letters)
+        if player_guess in target_word:
+            print("Correct!")
+        else:
+            print("Wrong!")
+            wrong_guesses += 1
+
+        
