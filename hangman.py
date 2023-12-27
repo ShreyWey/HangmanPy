@@ -166,4 +166,12 @@ if __name__ == "__main__":
             print("Wrong!")
             wrong_guesses += 1
 
-        
+        guessed_letters.add(player_guess)
+        guessed_word = build_guessed_word(target_word, guessed_letters)
+
+        draw_hanged_man(wrong_guesses)
+        if wrong_guesses == MAX_INCORRECT_GUESSES:
+            print("You lost! Try again")
+        else:
+            print("Congrats! You win!!")
+        print("your word was: {target_word}")
